@@ -37,7 +37,7 @@
     fallback.querySelector('span').textContent = text;
     const retry = fallback.querySelector('[data-tour-retry]');
     if (retry) retry.hidden = !canRetry;
-    root.classList.remove('is-loading', 'is-switching', 'is-sharpening');
+    root.classList.remove('is-loading', 'is-switching', 'is-approaching', 'is-sharpening');
     root.removeAttribute('aria-busy');
     announce(`${title} ${text}`);
   }
@@ -74,11 +74,11 @@
       yaw: -1.37,
       pitch: 0.02,
       hotspots: [
-        { yaw: 0.2, pitch: 0.27, title: 'Здание станции', text: 'Республиканская станция скорой медицинской помощи. Название станции указано на фасаде здания.' },
+        { yaw: 0.2, pitch: 0.27, title: 'Здание станции', text: 'Здание Республиканской станции скорой медицинской помощи в Грозном.' },
         { yaw: -1.57, pitch: 0.04, title: 'Автомобиль класса B', text: 'Автомобиль скорой медицинской помощи для работы выездной бригады. Подойдите ближе, чтобы осмотреть его снаружи и заглянуть в медицинский салон.', next: 'b-exterior', action: 'Подойти к автомобилю' },
-        { yaw: -1.92, pitch: 0.17, title: 'Боковая дверь медицинского салона', text: 'Боковой вход используется бригадой для доступа в медицинский салон. Перед выездом проход и закрытие двери проверяют по регламенту станции.' },
-        { yaw: -1.92, pitch: -0.2, title: 'Ступень бокового входа', text: 'Ступень облегчает вход и выход из медицинского салона. Перед началом смены проверяют её исправность, чистоту и отсутствие скользких загрязнений.' },
-        { yaw: -1.4, pitch: 0.01, title: 'Кабина водителя', text: 'Кабина отделена от медицинского салона и предназначена для управления автомобилем и средствами связи. Состав органов управления зависит от модели автомобиля.' }
+        { yaw: -1.92, pitch: 0.17, title: 'Боковая дверь медицинского салона', text: 'Боковая дверь обеспечивает отдельный доступ к рабочей зоне медицинского салона.' },
+        { yaw: -1.92, pitch: -0.2, title: 'Ступень бокового входа', text: 'Ступень у бокового входа облегчает вход в медицинский салон и выход из него.' },
+        { yaw: -1.4, pitch: 0.01, title: 'Кабина водителя', text: 'Кабина отделена от медицинского салона. Здесь расположены органы управления автомобилем и средствами связи.' }
       ]
     },
     'b-exterior': {
@@ -89,10 +89,10 @@
       pitch: 0.02,
       hotspots: [
         { yaw: -1.55, pitch: 0.08, title: 'Автомобиль класса B', text: 'Автомобиль скорой медицинской помощи для работы выездной бригады. Марка, модель и фактическая комплектация будут указаны после подтверждения станцией.', next: 'b-interior', action: 'Перейти в салон' },
-        { yaw: -1.16, pitch: 0.82, title: 'Светозвуковая сигнализация', text: 'Специальные световые и звуковые сигналы применяются при выполнении экстренного вызова в установленном порядке.' },
-        { yaw: -1.55, pitch: -0.27, title: 'Доступ в медицинский салон', text: 'Двери и ступень обеспечивают доступ бригады к медицинскому салону и перемещение пациента.' },
+        { yaw: -1.16, pitch: 0.82, title: 'Светозвуковая сигнализация', text: 'На крыше расположены элементы светозвуковой сигнализации автомобиля скорой медицинской помощи.' },
+        { yaw: -1.55, pitch: -0.27, title: 'Доступ в медицинский салон', text: 'Задний вход ведёт в медицинский салон и к зоне размещения носилок.' },
         { yaw: -2.42, pitch: 0.25, title: 'Кресло для переноски пациента', text: 'Складное кресло закреплено на внутренней стороне задней двери.' },
-        { yaw: -0.62, pitch: 0.12, title: 'Задняя дверь медицинского салона', text: 'Распашная дверь открывает доступ к зоне загрузки. Перед движением автомобиля проверяют закрытие створок и отсутствие предметов в проёме.' }
+        { yaw: -0.62, pitch: 0.12, title: 'Задняя дверь медицинского салона', text: 'Распашные створки открывают доступ к зоне размещения и фиксации носилок.' }
       ]
     },
     'b-interior': {
@@ -106,13 +106,18 @@
         { yaw: -1.22, pitch: 0.17, title: 'Кислородная система', text: 'Обеспечивает размещение и подключение кислородного оборудования. Точный состав зависит от комплектации автомобиля.' },
         { yaw: -1.96, pitch: -0.5, title: 'Система носилок', text: 'Предназначена для перемещения пациента и фиксации носилок в медицинском салоне.' },
         { yaw: -1.79, pitch: -0.14, title: 'Сумка экстренной помощи', text: 'Переносная медицинская укладка позволяет доставить необходимые средства непосредственно к пациенту.' },
-        { yaw: -1.8, pitch: 0.08, title: 'Медицинская укладка на верхней полке', text: 'Переносная укладка хранится в закреплённой зоне верхней полки. Назначение и состав необходимо указать по описи автомобиля класса B.' },
-        { yaw: -1.66, pitch: -0.13, title: 'Дополнительная медицинская укладка', text: 'Компактная переносная сумка размещена рядом с основной укладкой. Её назначение и комплектацию необходимо подтвердить по описи станции.' },
-        { yaw: -1.38, pitch: -0.3, title: 'Медицинская укладка у рабочего места', text: 'Переносная сумка расположена под стационарным оборудованием. Состав и порядок проверки перед сменой определяются описью и регламентом станции.' },
-        { yaw: -1.15, pitch: -0.21, title: 'Дополнительная сумка оснащения', text: 'Отдельная переносная сумка хранится на открытой полке для быстрого доступа. Точный состав требует подтверждения станции.' },
-        { yaw: -1.77, pitch: -0.39, title: 'Укладка на нижней полке', text: 'Крупная мягкая укладка закреплена в нижней зоне стеллажа. Назначение и содержимое необходимо сверить с фактической описью автомобиля.' },
-        { yaw: 0.37, pitch: -1.05, title: 'Жёсткий ящик у боковой двери', text: 'Жёсткий защитный ящик размещён на полу у боковой двери медицинского салона. Назначение и содержимое необходимо подтвердить по фактической описи автомобиля класса B.' },
+        { yaw: -1.8, pitch: 0.08, title: 'Медицинская укладка на верхней полке', text: 'Переносная укладка хранится в закреплённой зоне верхней полки.' },
+        { yaw: -1.66, pitch: -0.13, title: 'Дополнительная медицинская укладка', text: 'Компактная переносная сумка размещена рядом с основной укладкой.' },
+        { yaw: -1.38, pitch: -0.3, title: 'Медицинская укладка у рабочего места', text: 'Переносная сумка расположена под стационарным оборудованием.' },
+        { yaw: -1.15, pitch: -0.21, title: 'Дополнительная сумка оснащения', text: 'Отдельная переносная сумка хранится на открытой полке для быстрого доступа.' },
+        { yaw: -1.77, pitch: -0.39, title: 'Укладка на нижней полке', text: 'Крупная мягкая укладка закреплена в нижней зоне стеллажа.' },
+        { yaw: 0.37, pitch: -1.05, title: 'Жёсткий ящик у боковой двери', text: 'Жёсткий защитный ящик размещён на полу у боковой двери медицинского салона.' },
         { yaw: -2.77, pitch: 0.62, title: 'Иммобилизационное оснащение', text: 'Используется для ограничения движения повреждённой области при переноске и транспортировке пациента.' },
+        { yaw: 0.35, pitch: 0.53, title: 'Панель управления отопителем', text: 'Блок управления с надписью «ОТОПИТЕЛЬ» и клавишные переключатели оборудования медицинского салона.' },
+        { yaw: -1.35, pitch: 0.89, title: 'Аварийный люк', text: 'Люк в крыше с надписью «ЗАПАСНЫЙ ВЫХОД» — дополнительный путь эвакуации из медицинского салона.' },
+        { yaw: -1.3, pitch: 0.47, title: 'Аварийный молоток', text: 'Закреплён над рабочим местом. Им разбивают стекло, если выйти из салона через двери невозможно.' },
+        { yaw: -1.06, pitch: 0.18, title: 'Электрические розетки', text: 'Розетки 220 В и 12 В на панели рабочего места — для питания медицинского оборудования.' },
+        { yaw: -0.4, pitch: -0.7, title: 'Огнетушитель', text: 'Закреплён у кресла медицинского салона. Место отмечено знаком на стене.' },
         { yaw: 1.96, pitch: -0.27, title: 'Выход наружу', text: 'Вернуться к внешнему осмотру автомобиля класса B.', next: 'b-exterior', action: 'Выйти наружу' }
       ]
     },
@@ -123,11 +128,11 @@
       yaw: -1.1,
       pitch: 0.02,
       hotspots: [
-        { yaw: 0.24, pitch: 0.27, title: 'Здание станции', text: 'Республиканская станция скорой медицинской помощи. Название станции указано на фасаде здания.' },
+        { yaw: 0.24, pitch: 0.27, title: 'Здание станции', text: 'Здание Республиканской станции скорой медицинской помощи в Грозном.' },
         { yaw: -1.3, pitch: 0.03, title: 'Реанимобиль класса C', text: 'Автомобиль для работы специализированной бригады. Подойдите ближе, чтобы осмотреть его снаружи и заглянуть в медицинский салон.', next: 'c-exterior', action: 'Подойти к автомобилю' },
-        { yaw: -1.75, pitch: 0.17, title: 'Боковая дверь медицинского салона', text: 'Боковой вход используется бригадой для доступа к рабочей зоне реанимобиля. Перед выездом проход и закрытие двери проверяют по регламенту станции.' },
-        { yaw: -1.75, pitch: -0.2, title: 'Ступень бокового входа', text: 'Ступень облегчает безопасный вход и выход из медицинского салона. Перед сменой проверяют её исправность и отсутствие скользких загрязнений.' },
-        { yaw: -1.2, pitch: 0.01, title: 'Кабина водителя', text: 'Кабина предназначена для управления автомобилем и средствами связи. Конкретные органы управления и оборудование зависят от модели реанимобиля.' }
+        { yaw: -1.75, pitch: 0.17, title: 'Боковая дверь медицинского салона', text: 'Боковая дверь обеспечивает отдельный доступ к рабочей зоне медицинского салона.' },
+        { yaw: -1.75, pitch: -0.2, title: 'Ступень бокового входа', text: 'Ступень у бокового входа облегчает вход в медицинский салон и выход из него.' },
+        { yaw: -1.2, pitch: 0.01, title: 'Кабина водителя', text: 'В кабине расположены органы управления автомобилем и средствами связи.' }
       ]
     },
     'c-exterior': {
@@ -138,10 +143,10 @@
       pitch: 0.02,
       hotspots: [
         { yaw: -1.6, pitch: 0.12, title: 'Реанимобиль класса C', text: 'Автомобиль для работы специализированной бригады. Марка, модель и фактическая комплектация будут указаны после подтверждения станцией.', next: 'c-interior', action: 'Перейти в салон' },
-        { yaw: -1.32, pitch: 0.67, title: 'Светозвуковая сигнализация', text: 'Комплекс специальных сигналов делает автомобиль заметным при выполнении экстренного вызова.' },
-        { yaw: -1.59, pitch: -0.27, title: 'Зона загрузки пациента', text: 'Задняя часть автомобиля обеспечивает установку и фиксацию транспортировочной системы.' },
+        { yaw: -1.32, pitch: 0.67, title: 'Светозвуковая сигнализация', text: 'На крыше расположены элементы светозвуковой сигнализации автомобиля скорой медицинской помощи.' },
+        { yaw: -1.59, pitch: -0.27, title: 'Зона размещения носилок', text: 'Задний вход ведёт к системе установки и фиксации носилок.' },
         { yaw: -2.18, pitch: 0.39, title: 'Кресло для переноски пациента', text: 'Складное кресло закреплено на внутренней стороне задней двери.' },
-        { yaw: -0.7, pitch: 0.12, title: 'Задняя дверь медицинского салона', text: 'Распашная дверь открывает доступ к зоне загрузки. Перед движением автомобиля проверяют закрытие створок и отсутствие предметов в проёме.' }
+        { yaw: -0.7, pitch: 0.12, title: 'Задняя дверь медицинского салона', text: 'Распашные створки открывают доступ к зоне размещения и фиксации носилок.' }
       ]
     },
     'c-interior': {
@@ -151,19 +156,24 @@
       yaw: -1.3,
       pitch: -0.08,
       hotspots: [
-        { yaw: -1.21, pitch: -0.24, title: 'Монитор-дефибриллятор', text: 'Комплекс для мониторинга показателей пациента и проведения предусмотренных моделью лечебных мероприятий. Точная модель будет указана после инвентаризации.' },
+        { yaw: -1.21, pitch: -0.24, title: 'Монитор-дефибриллятор', text: 'Комплекс для мониторинга показателей пациента и проведения предусмотренных моделью лечебных мероприятий. Модель будет указана после подтверждения станцией.' },
         { yaw: -1.35, pitch: -0.05, title: 'Аппарат искусственной вентиляции лёгких', text: 'Предназначен для респираторной поддержки пациента. Режимы работы зависят от конкретной модели.' },
-        { yaw: -1.53, pitch: 0.07, title: 'Инфузионное оборудование', text: 'Оборудование для контролируемого введения растворов. Фактический состав необходимо подтвердить по комплектации реанимобиля.' },
+        { yaw: -1.53, pitch: 0.07, title: 'Инфузионное оборудование', text: 'Оборудование для контролируемого введения растворов. Состав оборудования будет указан после подтверждения станцией.' },
         { yaw: -1.24, pitch: 0.16, title: 'Кислородная система', text: 'Стационарные крепления, редукторы и точки подключения обеспечивают использование кислородного оборудования.' },
         { yaw: -1.96, pitch: -0.51, title: 'Система носилок', text: 'Обеспечивает перемещение пациента и надёжное крепление во время транспортировки.' },
-        { yaw: -1.89, pitch: -0.16, title: 'Реанимационная сумка', text: 'Переносная укладка с оборудованием и материалами для оказания помощи вне автомобиля. Состав будет описан по описи станции.' },
-        { yaw: -1.8, pitch: 0.07, title: 'Медицинская укладка на верхней полке', text: 'Переносная укладка хранится в верхней зоне стеллажа. Назначение и состав необходимо подтвердить по описи реанимобиля.' },
-        { yaw: -1.69, pitch: -0.2, title: 'Кейс с маркировкой LUCAS', text: 'На фотографии виден транспортировочный кейс с маркировкой LUCAS. Модель устройства, назначение и комплектность необходимо подтвердить у станции до публикации подробного описания.' },
-        { yaw: -1.78, pitch: -0.39, title: 'Укладка на нижней полке', text: 'Крупная мягкая укладка размещена в нижней зоне стеллажа. Её назначение и содержимое необходимо сверить с фактической описью реанимобиля.' },
-        { yaw: -0.58, pitch: -0.14, title: 'Дополнительная медицинская сумка', text: 'Отдельная переносная сумка размещена за креслом медицинского салона. Точный состав и порядок применения требуют подтверждения станции.' },
-        { yaw: 0.47, pitch: -1.05, title: 'Жёсткий ящик у боковой двери', text: 'Жёсткий защитный ящик с видимой маркировкой «44-2» размещён на полу у боковой двери. Назначение, содержимое и внутреннюю маркировку необходимо подтвердить по описи реанимобиля класса C.' },
-        { yaw: -1.47, pitch: -0.48, title: 'Аспиратор', text: 'Предназначен для удаления жидкостей из дыхательных путей. На странице будет указана фактическая модель станции.' },
+        { yaw: -1.89, pitch: -0.16, title: 'Реанимационная сумка', text: 'Переносная укладка с оборудованием и материалами для оказания помощи вне автомобиля.' },
+        { yaw: -1.8, pitch: 0.07, title: 'Медицинская укладка на верхней полке', text: 'Переносная укладка хранится в верхней зоне стеллажа.' },
+        { yaw: -1.69, pitch: -0.2, title: 'Кейс с маркировкой LUCAS', text: 'Транспортировочный кейс с маркировкой LUCAS. Описание устройства будет добавлено после подтверждения станцией.' },
+        { yaw: -1.78, pitch: -0.39, title: 'Укладка на нижней полке', text: 'Крупная мягкая укладка размещена в нижней зоне стеллажа.' },
+        { yaw: -0.58, pitch: -0.14, title: 'Дополнительная медицинская сумка', text: 'Отдельная переносная сумка размещена за креслом медицинского салона.' },
+        { yaw: 0.47, pitch: -1.05, title: 'Жёсткий ящик у боковой двери', text: 'Жёсткий защитный ящик с маркировкой «44-2» размещён на полу у боковой двери.' },
+        { yaw: -1.47, pitch: -0.48, title: 'Аспиратор', text: 'Предназначен для удаления жидкостей из дыхательных путей. Модель будет указана после подтверждения станцией.' },
         { yaw: -2.85, pitch: 0.62, title: 'Иммобилизационное оснащение', text: 'Используется для ограничения движения повреждённой области при переноске и транспортировке пациента.' },
+        { yaw: 0.42, pitch: 0.53, title: 'Панель управления отопителем', text: 'Блок управления с надписью «ОТОПИТЕЛЬ» и клавишные переключатели оборудования медицинского салона.' },
+        { yaw: -1.39, pitch: 0.92, title: 'Аварийный люк', text: 'Люк в крыше с надписью «ЗАПАСНЫЙ ВЫХОД» — дополнительный путь эвакуации из медицинского салона.' },
+        { yaw: -1.32, pitch: 0.48, title: 'Аварийный молоток', text: 'Закреплён над рабочим местом. Им разбивают стекло, если выйти из салона через двери невозможно.' },
+        { yaw: -1.07, pitch: 0.17, title: 'Электрические розетки', text: 'Розетки 220 В и 12 В на панели рабочего места — для питания медицинского оборудования.' },
+        { yaw: -0.4, pitch: -0.7, title: 'Огнетушитель', text: 'Закреплён у кресла медицинского салона. Место отмечено знаком на стене.' },
         { yaw: 1.96, pitch: -0.27, title: 'Выход наружу', text: 'Вернуться к внешнему осмотру реанимобиля класса C.', next: 'c-exterior', action: 'Выйти наружу' }
       ]
     }
@@ -390,10 +400,71 @@
   const nextButton = infoCard.querySelector('[data-card-next]');
   const guideTimer = infoCard.querySelector('.tour-guide-timer');
   const speakButton = infoCard.querySelector('[data-card-speak]');
+  const moreButton = root.querySelector('[data-more]');
+  const moreMenu = root.querySelector('[data-more-menu]');
+  const moreControls = moreMenu ? [...moreMenu.querySelectorAll('button[aria-pressed]')] : [];
+  const scenesButton = root.querySelector('[data-scenes-toggle]');
+  const scenesCurrent = root.querySelector('[data-scenes-current]');
+  const scenesMenu = root.querySelector('.tour-scene-tabs');
+  const compactScenes = matchMedia('(max-width: 800px), (max-height: 520px) and (pointer: coarse)');
   const canSpeak = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
   if (speakButton) speakButton.hidden = !canSpeak;
   let activeHotspot = null, cardOpener = null, placedHotspots = [];
   const infoSpots = scene => scene.hotspots.filter(spot => !spot.next);
+
+  function syncMoreButton() {
+    if (!moreButton) return;
+    const hasActive = moreControls.some(button => !button.hidden && button.getAttribute('aria-pressed') === 'true');
+    moreButton.classList.toggle('has-active', hasActive);
+    moreButton.setAttribute('aria-label', hasActive ? 'Дополнительные функции, есть активные' : 'Дополнительные функции');
+  }
+  function setMoreOpen(open, restoreFocus = false) {
+    if (!moreButton || !moreMenu) return;
+    moreMenu.hidden = !open;
+    moreButton.setAttribute('aria-expanded', String(open));
+    if (!open && restoreFocus) moreButton.focus({ preventScroll: true });
+  }
+  function syncScenesButton(scene = scenes[state.scene]) {
+    if (!scenesButton || !scene) return;
+    const labels = { yard: 'Двор станции', exterior: 'Снаружи', interior: 'Салон' };
+    const label = labels[scene.view] || scene.title;
+    if (scenesCurrent) scenesCurrent.textContent = label;
+    scenesButton.setAttribute('aria-label', `Выбрать сцену. Текущая сцена: ${label}`);
+  }
+  function setScenesOpen(open, restoreFocus = false) {
+    if (!scenesButton || !scenesMenu) return;
+    const expanded = Boolean(open && compactScenes.matches);
+    scenesMenu.classList.toggle('is-open', expanded);
+    scenesButton.setAttribute('aria-expanded', String(expanded));
+    if (!expanded && restoreFocus) scenesButton.focus({ preventScroll: true });
+  }
+  moreButton?.addEventListener('click', () => {
+    setScenesOpen(false);
+    setMoreOpen(moreMenu.hidden);
+  });
+  scenesButton?.addEventListener('click', () => {
+    setMoreOpen(false);
+    setScenesOpen(scenesButton.getAttribute('aria-expanded') !== 'true');
+  });
+  document.addEventListener('pointerdown', event => {
+    if (!moreMenu?.hidden && !root.querySelector('.tour-controls')?.contains(event.target)) setMoreOpen(false);
+    if (scenesButton?.getAttribute('aria-expanded') === 'true' && !scenesButton.contains(event.target) && !scenesMenu?.contains(event.target)) setScenesOpen(false);
+  });
+  root.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !moreMenu?.hidden) {
+      event.preventDefault();
+      setMoreOpen(false, true);
+    } else if (event.key === 'Escape' && scenesButton?.getAttribute('aria-expanded') === 'true') {
+      event.preventDefault();
+      setScenesOpen(false, true);
+    }
+  });
+  compactScenes.addEventListener?.('change', () => setScenesOpen(false));
+  if (moreControls.length && 'MutationObserver' in window) {
+    new MutationObserver(syncMoreButton).observe(moreMenu, { subtree: true, attributes: true, attributeFilter: ['aria-pressed', 'hidden'] });
+  }
+  syncMoreButton();
+  syncScenesButton();
 
   function chevron() {
     const ns = 'http://www.w3.org/2000/svg', svg = document.createElementNS(ns, 'svg'), path = document.createElementNS(ns, 'path');
@@ -428,7 +499,11 @@
         action.textContent = spot.action;
         button.append(action);
       }
-      button.addEventListener('click', () => { stopGuide(); openHotspot(spot, button); });
+      button.addEventListener('click', () => {
+        stopGuide();
+        if (spot.next) goToScene(spot.next, spot);
+        else openHotspot(spot, button);
+      });
       hotspotsLayer.append(button);
       placedHotspots.push({ spot, button });
       if (hotspotList) {
@@ -436,12 +511,15 @@
         if (spot.next) item.className = 'is-transition';
         const listButton = document.createElement('button');
         listButton.type = 'button';
-        listButton.textContent = spot.next ? `${spot.title} · ${spot.action}` : spot.title;
+        listButton.textContent = spot.next ? spot.action : spot.title;
         listButton.addEventListener('click', () => {
           stopGuide();
-          flyTo(framing(spot));
           root.scrollIntoView({ block: 'nearest' });
-          openHotspot(spot, listButton);
+          if (spot.next) goToScene(spot.next, spot);
+          else {
+            flyTo(framing(spot));
+            openHotspot(spot, listButton);
+          }
         });
         item.append(listButton);
         hotspotList.append(item);
@@ -615,6 +693,7 @@
   }
   async function loadScene(name, fromUser = false, view = null) {
     if (!own(scenes, name)) return;
+    root.classList.remove('is-approaching');
     const scene = scenes[name], loadId = ++sceneLoadId, intro = firstLoad;
     const walking = root.classList.contains('is-switching');
     const target = view || { yaw: scene.yaw, pitch: scene.pitch, fov: DEFAULT_FOV };
@@ -634,6 +713,7 @@
     };
     if (intro) busy(); else slowTimer = setTimeout(busy, 350);
     if (sceneName) sceneName.textContent = scene.title;
+    syncScenesButton(scene);
     if (sceneIndex) sceneIndex.textContent = `${String(views.indexOf(scene.view) + 1).padStart(2, '0')} / ${String(views.length).padStart(2, '0')}`;
     syncTabs(viewTabs, tab => tab.dataset.view === scene.view);
     syncTabs(vehicleTabs, tab => tab.dataset.vehicle === scene.vehicle);
@@ -647,7 +727,7 @@
         position: { yaw: target.yaw, pitch: target.pitch },
         zoom: zoomOf(reveal ? clampFov(target.fov + 0.3) : target.fov),
         showLoader: false,
-        transition: intro || reducedMotion() ? false : { speed: walking ? 700 : 450, effect: 'black', rotation: false }
+        transition: intro || reducedMotion() ? false : { speed: walking ? 180 : 450, effect: 'black', rotation: false }
       });
     } catch (error) {
       if (loadId !== sceneLoadId || isAbort(error)) return;
@@ -672,13 +752,21 @@
   // Walking through a door: the camera moves towards it while the picture dims.
   function goToScene(name, via = null) {
     if (!own(scenes, name)) return;
+    setMoreOpen(false);
+    setScenesOpen(false);
     closeCard(false);
     if (via && fallback.hidden && !document.hidden && !state.gyro && !reducedMotion()) {
-      root.classList.add('is-switching');
+      root.classList.add('is-approaching');
       const token = sceneLoadId;
-      flyTo({ yaw: via.yaw, pitch: via.pitch, fov: MIN_FOV + 0.12 }, null, { duration: 700 }).then(() => {
+      const currentFov = currentView().fov;
+      const approachFov = Math.max(MIN_FOV + 0.3, currentFov - 0.28);
+      flyTo({ yaw: via.yaw, pitch: via.pitch, fov: approachFov }, null, { duration: 520 }).then(() => {
+        root.classList.remove('is-approaching');
         // A tab chosen during the walk wins over the door.
-        if (token === sceneLoadId) loadScene(name, true);
+        if (token === sceneLoadId) {
+          root.classList.add('is-switching');
+          loadScene(name, true);
+        }
       });
     } else {
       loadScene(name, true);
@@ -689,6 +777,7 @@
     const name = `${state.vehicle}-${button.dataset.view}`;
     if (name === state.scene && fallback.hidden) return;
     stopGuide();
+    setScenesOpen(false);
     loadScene(name, true);
   }));
   vehicleTabs.forEach(button => button.addEventListener('click', () => {
@@ -696,6 +785,7 @@
     const name = `${button.dataset.vehicle}-${currentScene}`;
     if (name === state.scene && fallback.hidden) return;
     stopGuide();
+    setScenesOpen(false);
     loadScene(name, true);
   }));
 
@@ -774,9 +864,14 @@
   function guideShow(spot, then) {
     flyTo(framing(spot), () => {
       if (!guide) return;
-      openHotspot(spot, null, { focus: false });
-      announce(spot.title);
-      const dwell = spot.next ? 3000 : dwellTime(spot);
+      if (spot.next) {
+        closeCard(false);
+        announce(spot.action || spot.title);
+      } else {
+        openHotspot(spot, null, { focus: false });
+        announce(spot.title);
+      }
+      const dwell = spot.next ? 650 : dwellTime(spot);
       runGuideTimer(dwell);
       guide.timer = setTimeout(then, dwell);
     });
